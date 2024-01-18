@@ -37,7 +37,9 @@
 
 /* Base */
 
-*{
+*,
+::after,
+::before{
     box-sizing: border-box;
 }
 
@@ -53,6 +55,10 @@ body {
 
 h1, h2, h3, h4, h5, h6, p{
     margin-top: 0;
+}
+
+a{
+    display: inline-block;
 }
 
 ul {
@@ -219,30 +225,70 @@ address{
 }
 
 /* Chefs section */
+
 .chefs-title {
-    max-width: 520px;
+    position: relative;
     margin: 0 auto 80px;
 }
 
 .chefs-title::before,
 .chefs-title::after {
+    position: absolute;
+    bottom: 24px;
     display: block;
     width: 352px;
-    border: 2px solid var(--color-primary-light);
+    border: 2px solid var(--color-brand-light);
     content: '';
+}
+
+.chefs-title::before {
+    left: 0;
+}
+
+.chefs-title::after {
+    right: 0;
+}
+
+.chefs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40 px 30px;
+}
+
+.chef-card{
+    display: flex;
+    gap: 30px;
+}
+
+.chefs-item{
+    flex-basis: calc((100% - 30px) / 2);
 }
 
 .chef-foto{
     border-radius: 4px 4px 4px 200px;
     box-shadow: -16px 16px 0 0 var(--color-primary-light), -16px 16px 0 2px var(--color-secondary-dark);
 }
+
 .chef-title {
     margin-bottom: 16px;
     font-size: 40px;
     font-weight: 600;
 }
 
+.chef-text p{
+    margin-bottom: 24px;
+}
+
+.chef-text p:last-child {
+    margin-bottom: 0;
+}
 /* Fornat section */
+
+.formats-container{
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
 
 .format-card{
     height: 444px;
@@ -278,6 +324,7 @@ address{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     width: 44px;
     height: 44px;
     padding: 0;
@@ -294,33 +341,126 @@ address{
 }
 
 /* Contacts section */
+
+.contacts-section {
+    padding-bottom: 96px;
+}
+.contact-container {
+    display: flex;
+    gap: 32px;
+}
+
 .contacts-title{
     margin-bottom: 16px;
 }
+
+.contact-map{
+    flex-shrink: 0;
+    border-radius: 16px;
+    border: none;
+}
 /* Footer */
-.adress-link {
+.footer{
+    padding: 32px 0;
+    position: relative;
+    background-image: url(../images/footer-background.png);
+    background-color: var(--color-primary-dark);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.footer::before,
+.footer::after {
+    position: absolute;
+    bottom: 0;
+    background-repeat: no-repeat;
+    content: '';
+}
+
+.footer::before {
+    width: 180px;
+    height: 120px;
+    left: 0;
+    background-image: url('../images/decor-bread-small.png');
+
+}
+
+.footer::after {
+    width: 380px;
+    height: 190px;
+    right: 0;
+    background-image: url('../images/decor-bread-large.png');
+}
+
+.footer-container{
+    display: flex;
+    gap: 20px;
+}
+
+.footer-nav,
+.footer-address{
+    display: flex;
+    flex-basis: 50%;
+    gap: 20px;
+}
+
+.footer-logo, 
+.footer-menu{
+    flex-grow: 1;
+}
+
+.address-list,
+.address-info{
+    flex-grow: 1;
+}
+.address-link {
     color: var(--color-primary-light);
     font-size: 16px;
     font-weight: 300;
     text-decoration: none;
 }
 
-.adress-link:hover {
+.address-link:hover {
     color: var(--color-brand-normal);
 }
 
-.adress-icon{
+.address-icon{
     fill: var(--color-primary-light);
 }
 
-.adress-copyright {
+.address-copyright {
     font-size: 14px;
 }
 
-.footer{
-    background-image: url(../images/footer-background.png);
-    background-color: var(--color-primary-dark);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.modal {
+    position: relative;
+    width: 880px;
+    height: 880px;
+    background-color: var(--color-primary-light);
+    border-radius: 32px;
+}
+
+.modal-btn-close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
 }
